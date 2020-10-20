@@ -1,4 +1,6 @@
 // addImage.js
+import '../styles/style.css';
+
 // 必须 require 进来
 let avatarImg = document.createElement('img');
 avatarImg.src = require('../images/avatar.png');

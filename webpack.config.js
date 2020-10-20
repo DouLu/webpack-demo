@@ -1,10 +1,11 @@
 // 自带的库
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
 	entry: './app/index.js', // 入口文件
 	output: {
 		path: path.resolve(__dirname, 'build'), // 必须使用绝对地址，输出文件夹
-		filename: 'bundle.js', // 打包后输出文件的文件名
+		filename: 'bundle.js' // 打包后输出文件的文件名
 	},
 	module: {
 		rules: [
@@ -33,7 +34,19 @@ module.exports = {
 						}
 					}
 				]
+			},
+			{
+				test: /\.css$/i,
+				use: [MiniCssExtractPlugin.loader, 'css-loader']
 			}
 		]
-	}
+	},
+	// 插件列表
+	plugins: [
+		// 输出的文件路径
+		new MiniCssExtractPlugin({
+			filename: 'css/[name].[hash].css'
+		})
+		// new MiniCssExtractPlugin('css/[name].[hash].css')
+	]
 };
